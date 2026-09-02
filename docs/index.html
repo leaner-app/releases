@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Leaner — limpieza de disco para desarrolladores en macOS</title>
+<meta name="description" content="App nativa de macOS que recupera el disco que se comen Xcode, Gradle, Maven, node y los simuladores. Notarizada por Apple y con su política de borrado publicada para auditoría.">
+<meta property="og:title" content="Leaner — limpieza de disco para desarrolladores en macOS">
+<meta property="og:description" content="Recupera el disco que se comen Xcode, Gradle, Maven, node y los simuladores. Notarizada, sin telemetría y con la política de borrado auditable.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://leaner-app.github.io/releases/">
+<meta property="og:image" content="https://leaner-app.github.io/releases/img/resumen.png">
+<meta name="twitter:card" content="summary_large_image">
+<style>
+:root {
+  color-scheme: light dark;
+  --bg: #fbfbfd;
+  --panel: #ffffff;
+  --text: #1a1a1c;
+  --muted: #62626b;
+  --line: #e3e3e8;
+  --accent: #2563eb;
+  --safe: #0f7b3d;
+  --review: #a35a00;
+  --code-bg: #f4f4f7;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #131316;
+    --panel: #1c1c20;
+    --text: #f2f2f5;
+    --muted: #a0a0aa;
+    --line: #2e2e35;
+    --accent: #6f9dff;
+    --safe: #4ade80;
+    --review: #fbbf24;
+    --code-bg: #26262c;
+  }
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font: 16px/1.6 -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+.wrap { max-width: 880px; margin: 0 auto; padding: 0 22px; }
+header { padding: 72px 0 40px; text-align: center; }
+h1 { font-size: 3rem; margin: 0 0 12px; letter-spacing: -0.03em; }
+.tagline { font-size: 1.35rem; color: var(--text); margin: 0 auto 10px; max-width: 34ch; font-weight: 500; }
+.sub { color: var(--muted); margin: 0 auto 28px; max-width: 52ch; }
+.cta { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-bottom: 14px; }
+.btn {
+  display: inline-block; padding: 11px 20px; border-radius: 10px; text-decoration: none;
+  font-weight: 600; border: 1px solid var(--line); color: var(--text); background: var(--panel);
+}
+.btn.primary { background: var(--accent); border-color: var(--accent); color: #fff; }
+code, pre { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; }
+pre {
+  background: var(--code-bg); border: 1px solid var(--line); border-radius: 10px;
+  padding: 14px 16px; overflow-x: auto; font-size: 0.92rem; margin: 0 0 14px;
+}
+code { background: var(--code-bg); padding: 1px 5px; border-radius: 5px; font-size: 0.9em; }
+pre code { background: none; padding: 0; }
+.shot { width: 100%; border-radius: 12px; border: 1px solid var(--line); display: block; margin: 8px 0 0; }
+section { padding: 34px 0; border-top: 1px solid var(--line); }
+h2 { font-size: 1.5rem; margin: 0 0 8px; letter-spacing: -0.02em; }
+.lead { color: var(--muted); margin: 0 0 20px; }
+table { width: 100%; border-collapse: collapse; font-size: 0.95rem; }
+td, th { text-align: left; padding: 9px 8px; border-bottom: 1px solid var(--line); vertical-align: top; }
+th { color: var(--muted); font-weight: 600; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.04em; }
+td.num { text-align: right; white-space: nowrap; font-variant-numeric: tabular-nums; }
+tr.total td { font-weight: 700; border-bottom: none; }
+.tag { font-size: 0.78rem; font-weight: 700; padding: 2px 8px; border-radius: 999px; white-space: nowrap; }
+.tag.safe { color: var(--safe); background: color-mix(in srgb, var(--safe) 14%, transparent); }
+.tag.review { color: var(--review); background: color-mix(in srgb, var(--review) 16%, transparent); }
+ul.checks { list-style: none; padding: 0; margin: 0; }
+ul.checks li { padding: 9px 0 9px 30px; position: relative; border-bottom: 1px solid var(--line); }
+ul.checks li:last-child { border-bottom: none; }
+ul.checks li::before { content: "✓"; position: absolute; left: 4px; color: var(--safe); font-weight: 700; }
+footer { padding: 34px 0 60px; color: var(--muted); font-size: 0.9rem; text-align: center; border-top: 1px solid var(--line); }
+a { color: var(--accent); }
+@media (max-width: 600px) { h1 { font-size: 2.2rem; } .tagline { font-size: 1.15rem; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <h1>Leaner</h1>
+  <p class="tagline">Recupera el disco que se comen Xcode, Gradle, Maven, node y los simuladores.</p>
+  <p class="sub">App nativa para macOS 14 o posterior. Firmada con Developer ID, notarizada por Apple y sin telemetría.</p>
+  <div class="cta">
+    <a class="btn primary" href="https://github.com/leaner-app/releases/releases/latest/download/Leaner.dmg">Descargar .dmg</a>
+    <a class="btn" href="https://github.com/leaner-app/path-policy">Auditar qué borra</a>
+  </div>
+  <img class="shot" src="img/resumen.png" alt="Ventana de Leaner mostrando el resumen del disco">
+</header>
+
+<section>
+  <h2>Instalar</h2>
+  <p class="lead">Con Homebrew, que además se encarga de las actualizaciones:</p>
+  <pre><code>brew install --cask leaner-app/tap/leaner</code></pre>
+  <p class="lead">O desde la terminal, sin Homebrew:</p>
+  <pre><code>curl -fsSL https://raw.githubusercontent.com/leaner-app/releases/main/install.sh | zsh</code></pre>
+</section>
+
+<section>
+  <h2>Por qué existe</h2>
+  <p class="lead">
+    Los limpiadores para Mac buscan cachés de navegador y archivos de idioma. En una máquina de
+    desarrollo eso es calderilla: lo que ocupa son los repositorios de dependencias, las
+    distribuciones descargadas, los índices de compilación y los simuladores. Este es el reparto
+    real en el equipo donde se desarrolla Leaner:
+  </p>
+  <table>
+    <tr><td>Cachés de apps Chromium y Electron (Chrome, VS&nbsp;Code, Slack, Spotify…)</td><td class="num">11,5 GB</td></tr>
+    <tr><td>Repositorio local de Maven</td><td class="num">7,1 GB</td></tr>
+    <tr><td>Distribuciones de Gradle y JDKs</td><td class="num">5,2 GB</td></tr>
+    <tr><td>Cachés de herramientas de terminal (<code>~/.cache</code>)</td><td class="num">2,2 GB</td></tr>
+    <tr><td>Cachés de npm, yarn, pnpm, pip, Homebrew, Cargo, Go…</td><td class="num">1,2 GB</td></tr>
+    <tr><td>Registros del daemon de Gradle</td><td class="num">1,2 GB</td></tr>
+    <tr><td>Cachés del sistema, papelera, descargas, datos de apps desinstaladas…</td><td class="num">~1 GB</td></tr>
+    <tr class="total"><td>Total propuesto</td><td class="num">29 GB</td></tr>
+  </table>
+</section>
+
+<section>
+  <h2>Qué limpia</h2>
+  <p class="lead">
+    Lo <span class="tag safe">Seguro</span> viene preseleccionado; lo de
+    <span class="tag review">Revisar</span> solo se elimina si lo marcas tú.
+  </p>
+  <table>
+    <tr><td>Cachés y registros de apps, Papelera, estado de ventanas</td><td class="num"><span class="tag safe">Seguro</span></td></tr>
+    <tr><td>Cachés de apps Chromium y Electron</td><td class="num"><span class="tag safe">Seguro</span></td></tr>
+    <tr><td>Cachés de gestores de paquetes y del daemon de Gradle</td><td class="num"><span class="tag safe">Seguro</span></td></tr>
+    <tr><td>DerivedData de Xcode y simuladores sin runtime</td><td class="num"><span class="tag safe">Seguro</span></td></tr>
+    <tr><td>Repositorio de Maven, distribuciones de Gradle y JDKs</td><td class="num"><span class="tag review">Revisar</span></td></tr>
+    <tr><td>Cachés de terminal, temporales antiguos, Playwright</td><td class="num"><span class="tag review">Revisar</span></td></tr>
+    <tr><td>DeviceSupport y Archives de Xcode</td><td class="num"><span class="tag review">Revisar</span></td></tr>
+    <tr><td>Apps instaladas en simuladores apagados</td><td class="num"><span class="tag review">Revisar</span></td></tr>
+    <tr><td>Descargas de Mail, instaladores y descargas antiguas</td><td class="num"><span class="tag review">Revisar</span></td></tr>
+    <tr><td>Copias de iPhone/iPad y datos de apps desinstaladas</td><td class="num"><span class="tag review">Revisar</span></td></tr>
+  </table>
+  <p class="lead" style="margin-top:16px">
+    Además desinstala apps sin uso arrastrando sus datos, y localiza los archivos más grandes.
+  </p>
+</section>
+
+<section>
+  <h2>Por qué puedes fiarte</h2>
+  <p class="lead">
+    Una app que borra archivos y pide «Acceso total al disco» tiene que ganarse ese permiso.
+  </p>
+  <ul class="checks">
+    <li><b>La política de borrado es pública.</b> Está en
+      <a href="https://github.com/leaner-app/path-policy">leaner-app/path-policy</a> con sus tests:
+      clónala y ejecuta <code>swift test</code>. Es el mismo archivo que compila la app, con su <code>sha256</code>.</li>
+    <li><b>Autoridad única.</b> Esa política decide al escanear y <em>otra vez justo antes de cada
+      eliminación</em>, así que un error en un escáner no puede acabar en un borrado indebido.</li>
+    <li><b>Ámbito acotado.</b> Solo tu carpeta de usuario, <code>$TMPDIR</code> y, al desinstalar, la
+      app que elijas. Nunca <code>/System</code>, <code>/Library</code>, <code>/usr</code> ni apps protegidas por SIP.</li>
+    <li><b>Zonas vetadas.</b> Mail, Mensajes, Fotos, llaveros, iCloud Drive, contenedores de Apple y
+      bibliotecas de Fotos o Música: ni se borran ni se recorren.</li>
+    <li><b>Reversible donde importa.</b> Lo marcado como «Revisar» y las desinstalaciones van a la Papelera.</li>
+    <li><b>Sin telemetría.</b> La app solo sale a la red para comprobar si hay una versión nueva.</li>
+  </ul>
+</section>
+
+<footer>
+  <p>
+    <a href="https://github.com/leaner-app/releases/releases">Todas las versiones</a> ·
+    <a href="https://github.com/leaner-app/releases/issues">Incidencias</a> ·
+    <a href="https://github.com/leaner-app/path-policy">Política de borrado</a>
+  </p>
+</footer>
+
+</div>
+</body>
+</html>
