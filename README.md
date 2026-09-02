@@ -1,105 +1,106 @@
+<p align="right"><b>English</b> · <a href="README.es.md">Español</a></p>
+
 <h1 align="center">Leaner</h1>
 
 <p align="center">
-  <strong>Recupera el disco que se comen Xcode, Gradle, Maven, node y los simuladores.</strong><br>
-  App nativa para macOS 14 o posterior. Firmada con Developer ID y notarizada por Apple.
+  <strong>Reclaim the disk space Xcode, Gradle, Maven, node and the simulators eat.</strong><br>
+  A native app for macOS 14 or later. Signed with a Developer ID and notarized by Apple.
 </p>
 
 <p align="center">
-  <a href="https://github.com/leaner-app/releases/releases/latest/download/Leaner.dmg"><b>Descargar .dmg</b></a> ·
-  <a href="https://github.com/leaner-app/path-policy"><b>Auditar qué borra</b></a> ·
-  <a href="https://github.com/leaner-app/releases/releases"><b>Todas las versiones</b></a>
+  <a href="https://github.com/leaner-app/releases/releases/latest/download/Leaner.dmg"><b>Download .dmg</b></a> ·
+  <a href="https://github.com/leaner-app/path-policy"><b>Audit what it deletes</b></a> ·
+  <a href="https://leaner-app.github.io/releases/"><b>Website</b></a>
 </p>
 
 <p align="center">
-  <img src="docs/img/resumen.png" alt="Resumen de Leaner: disco, espacio recuperable y actualizaciones" width="820">
+  <img src="docs/img/resumen.png" alt="Leaner’s overview: disk usage, recoverable space and updates" width="820">
   <br><br>
-  <img src="docs/img/limpieza.png" alt="Lista de categorías de limpieza con su tamaño y nivel de riesgo" width="820">
+  <img src="docs/img/limpieza.png" alt="List of cleanup categories with their size and risk level" width="820">
 </p>
 
-## Instalar
+## Install
 
 ```bash
 brew install --cask leaner-app/tap/leaner
 ```
 
-O descarga el [.dmg](https://github.com/leaner-app/releases/releases/latest/download/Leaner.dmg)
-y arrastra Leaner a Aplicaciones. También hay instalador por terminal:
+Or download the [.dmg](https://github.com/leaner-app/releases/releases/latest/download/Leaner.dmg)
+and drag Leaner into Applications. There is also a terminal installer:
 
 ```bash
 curl -fsSL https://raw.githubusercontent.com/leaner-app/releases/main/install.sh | zsh
 ```
 
-## Por qué existe
+## Why it exists
 
-Los limpiadores de disco para Mac buscan cachés de navegador y archivos de idioma. En una
-máquina de desarrollo eso es calderilla: lo que ocupa son los repositorios de dependencias, las
-distribuciones descargadas, los índices de compilación y los simuladores.
+Mac disk cleaners go after browser caches and language files. On a development machine that is
+pocket change: the weight is in dependency repositories, downloaded distributions, build indexes
+and simulators.
 
-En el equipo donde se desarrolla Leaner, la primera medición dio esto:
+On the machine where Leaner is built, the first measurement looked like this:
 
 | | |
 |---|---|
-| Cachés de apps Chromium y Electron (Chrome, VS Code, Slack, Spotify…) | 11,5 GB |
-| Repositorio local de Maven | 7,1 GB |
-| Distribuciones de Gradle y JDKs | 5,2 GB |
-| Cachés de herramientas de terminal (`~/.cache`) | 2,2 GB |
-| Cachés de gestores de paquetes (npm, yarn, pnpm, pip, Homebrew, Cargo, Go…) | 1,2 GB |
-| Registros del daemon de Gradle | 1,2 GB |
-| Resto (cachés del sistema, papelera, descargas, datos de apps desinstaladas…) | ~1 GB |
-| **Total propuesto** | **29 GB** |
+| Chromium and Electron app caches (Chrome, VS Code, Slack, Spotify…) | 11.5 GB |
+| Local Maven repository | 7.1 GB |
+| Gradle distributions and JDKs | 5.2 GB |
+| Command-line tool caches (`~/.cache`) | 2.2 GB |
+| Package manager caches (npm, yarn, pnpm, pip, Homebrew, Cargo, Go…) | 1.2 GB |
+| Gradle daemon logs | 1.2 GB |
+| Everything else (system caches, Trash, downloads, data from uninstalled apps…) | ~1 GB |
+| **Total proposed** | **29 GB** |
 
-Tras esa primera limpieza, el mismo equipo sigue proponiendo unos 16 GB: las cachés se
-regeneran y los repositorios de dependencias vuelven a crecer. Por eso la app está pensada para
-volver a pasarla, no para usarla una vez.
+After that first cleanup the same machine still proposes around 16 GB: caches come back and
+dependency repositories grow again. Leaner is meant to be run periodically, not once.
 
-## Qué limpia
+## What it cleans
 
-| Categoría | Riesgo |
+| Category | Risk |
 |---|---|
-| Cachés y registros de apps, Papelera, estado de ventanas guardado | Seguro |
-| Cachés de apps Chromium y Electron | Seguro |
-| Cachés de npm, yarn, pnpm, bun, pip, Homebrew, Gradle, CocoaPods, Cargo, Go, Composer, NuGet | Seguro |
-| DerivedData de Xcode, cachés y simuladores sin runtime | Seguro |
-| Registros del daemon de Gradle | Seguro |
-| Repositorio local de Maven, distribuciones de Gradle y JDKs | Revisar |
-| Cachés de herramientas de terminal y temporales antiguos | Revisar |
-| DeviceSupport y Archives de Xcode, navegadores de Playwright | Revisar |
-| Apps instaladas en simuladores apagados (el dispositivo se conserva) | Revisar |
-| Descargas de Mail, instaladores y descargas antiguas | Revisar |
-| Copias de iPhone/iPad, datos de apps ya desinstaladas | Revisar |
+| App caches and logs, Trash, saved window state | Safe |
+| Chromium and Electron app caches | Safe |
+| npm, yarn, pnpm, bun, pip, Homebrew, Gradle, CocoaPods, Cargo, Go, Composer, NuGet caches | Safe |
+| Xcode DerivedData, simulator caches and simulators with no runtime | Safe |
+| Gradle daemon logs | Safe |
+| Local Maven repository, Gradle distributions and JDKs | Review |
+| Command-line tool caches and old temporary files | Review |
+| Xcode device support and archives, Playwright browsers | Review |
+| Apps installed in shut-down simulators (the device itself is kept) | Review |
+| Mail downloads, installers and old downloads | Review |
+| iPhone and iPad backups, data from uninstalled apps | Review |
 
-Lo «Seguro» viene preseleccionado; lo de «Revisar» solo se elimina si lo marcas tú. Además
-desinstala apps sin uso arrastrando sus datos, y localiza archivos grandes.
+Anything **Safe** is preselected; **Review** items are only removed if you check them yourself.
+Leaner also uninstalls unused apps along with their leftover data, and finds your largest files.
 
-## Por qué puedes fiarte
+## Why you can trust it
 
-Una app que borra archivos y pide «Acceso total al disco» tiene que ganarse esa confianza:
+An app that deletes files and asks for Full Disk Access has to earn that trust:
 
-- **La política de borrado es pública y auditable**: [leaner-app/path-policy](https://github.com/leaner-app/path-policy).
-  Clónala y ejecuta `swift test`. Es el mismo archivo que compila la app, con su `sha256`.
-- **Autoridad única**: esa política se consulta al escanear y **otra vez antes de cada
-  eliminación**, así que un error en un escáner no puede traducirse en un borrado indebido.
-- **Ámbito acotado**: solo tu carpeta de usuario, `$TMPDIR` y, al desinstalar, la app elegida.
-  Nunca `/System`, `/Library`, `/usr`, ni apps de Apple o protegidas por SIP.
-- **Zonas vetadas**: Mail, Mensajes, Fotos, llaveros, iCloud Drive, contenedores de Apple y
-  bibliotecas de Fotos o Música: ni se borran ni se recorren.
-- **Reversible donde importa**: lo marcado como «Revisar» y las desinstalaciones van a la
-  Papelera.
-- **Sin telemetría.** La app solo sale a la red para comprobar si hay una versión nueva.
+- **The deletion policy is public and auditable**: [leaner-app/path-policy](https://github.com/leaner-app/path-policy).
+  Clone it and run `swift test`. It is the same file the app is built from, published with its `sha256`.
+- **Single authority**: that policy is consulted when scanning and **again right before every
+  deletion**, so a bug in a scanner cannot turn into a bad delete.
+- **Bounded scope**: only your home folder, `$TMPDIR` and, when uninstalling, the app you pick.
+  Never `/System`, `/Library`, `/usr`, or Apple and SIP-protected apps.
+- **Off-limits areas**: Mail, Messages, Photos, keychains, iCloud Drive, Apple containers and
+  Photos or Music libraries are neither deleted nor traversed.
+- **Reversible where it matters**: anything marked “Review”, and uninstalls, go to the Trash.
+- **No telemetry.** The app only reaches the network to check for a new version.
 
-## Permisos
+## Permissions
 
-Para leer la Papelera, las descargas de Mail y las copias de iPhone hace falta conceder
-«Acceso total al disco» en Ajustes del Sistema → Privacidad y seguridad. La app te lleva a esa
-pantalla con un botón. Sin ese permiso funciona igual, pero se salta esas categorías.
+To read the Trash, Mail downloads and iPhone backups, Leaner needs Full Disk Access in
+System Settings → Privacy & Security. The app takes you to that screen with a button. Without
+that permission it still works, it just skips those categories.
 
-## Actualizaciones
+## Updates
 
-La app avisa cuando hay versión nueva y la instala tras comprobar que está firmada por el mismo
-desarrollador y que Gatekeeper la acepta. Si la instalaste con Homebrew, delega en
-`brew upgrade` para no descuadrar su contabilidad.
+The app tells you when a new version is out and installs it after checking that it is signed by
+the same developer and accepted by Gatekeeper. If you installed it with Homebrew, it defers to
+`brew upgrade` so brew's bookkeeping stays correct.
 
 ---
 
-Incidencias y sugerencias en [Issues](https://github.com/leaner-app/releases/issues).
+The interface is available in English and Spanish, following your system language.
+Bugs and suggestions in [Issues](https://github.com/leaner-app/releases/issues).

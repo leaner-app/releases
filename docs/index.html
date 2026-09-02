@@ -1,12 +1,16 @@
 <!doctype html>
-<html lang="es">
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Leaner — limpieza de disco para desarrolladores en macOS</title>
-<meta name="description" content="App nativa de macOS que recupera el disco que se comen Xcode, Gradle, Maven, node y los simuladores. Notarizada por Apple y con su política de borrado publicada para auditoría.">
-<meta property="og:title" content="Leaner — limpieza de disco para desarrolladores en macOS">
-<meta property="og:description" content="Recupera el disco que se comen Xcode, Gradle, Maven, node y los simuladores. Notarizada, sin telemetría y con la política de borrado auditable.">
+<title>Leaner — disk cleanup for developers on macOS</title>
+<meta name="description" content="A native macOS app that reclaims the disk space Xcode, Gradle, Maven, node and the simulators eat. Notarized by Apple, with its deletion policy published for anyone to audit.">
+<link rel="canonical" href="https://leaner-app.github.io/releases/">
+<link rel="alternate" hreflang="en" href="https://leaner-app.github.io/releases/">
+<link rel="alternate" hreflang="es" href="https://leaner-app.github.io/releases/es/">
+<link rel="alternate" hreflang="x-default" href="https://leaner-app.github.io/releases/">
+<meta property="og:title" content="Leaner — disk cleanup for developers on macOS">
+<meta property="og:description" content="Reclaim the disk space Xcode, Gradle, Maven, node and the simulators eat. Notarized, no telemetry, and the deletion policy is public.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://leaner-app.github.io/releases/">
 <meta property="og:image" content="https://leaner-app.github.io/releases/img/resumen.png">
@@ -46,7 +50,7 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 .wrap { max-width: 880px; margin: 0 auto; padding: 0 22px; }
-header { padding: 72px 0 40px; text-align: center; }
+header { padding: 56px 0 40px; text-align: center; }
 h1 { font-size: 3rem; margin: 0 0 12px; letter-spacing: -0.03em; }
 .tagline { font-size: 1.35rem; color: var(--text); margin: 0 auto 10px; max-width: 34ch; font-weight: 500; }
 .sub { color: var(--muted); margin: 0 auto 28px; max-width: 52ch; }
@@ -81,108 +85,144 @@ ul.checks li:last-child { border-bottom: none; }
 ul.checks li::before { content: "✓"; position: absolute; left: 4px; color: var(--safe); font-weight: 700; }
 footer { padding: 34px 0 60px; color: var(--muted); font-size: 0.9rem; text-align: center; border-top: 1px solid var(--line); }
 a { color: var(--accent); }
+.langbar {
+  display: none; align-items: center; justify-content: center; gap: 12px;
+  background: var(--panel); border: 1px solid var(--line); border-radius: 10px;
+  padding: 10px 14px; margin: 18px auto 0; font-size: 0.92rem; max-width: 640px;
+}
+.langbar button {
+  font: inherit; font-weight: 600; cursor: pointer; padding: 5px 12px; border-radius: 8px;
+  border: 1px solid var(--line); background: transparent; color: var(--muted);
+}
+.langlink { color: var(--accent); font-weight: 600; text-decoration: none; }
+.langpick { text-align: center; font-size: 0.88rem; color: var(--muted); padding-top: 6px; }
 @media (max-width: 600px) { h1 { font-size: 2.2rem; } .tagline { font-size: 1.15rem; } }
 </style>
 </head>
 <body>
 <div class="wrap">
 
+<div class="langbar" id="langbar">
+  <span>Esta página también está en español.</span>
+  <a class="langlink" href="es/">Ver en español</a>
+  <button type="button" id="langdismiss">No, gracias</button>
+</div>
+
 <header>
   <h1>Leaner</h1>
-  <p class="tagline">Recupera el disco que se comen Xcode, Gradle, Maven, node y los simuladores.</p>
-  <p class="sub">App nativa para macOS 14 o posterior. Firmada con Developer ID, notarizada por Apple y sin telemetría.</p>
+  <p class="tagline">Reclaim the disk space Xcode, Gradle, Maven, node and the simulators eat.</p>
+  <p class="sub">A native app for macOS 14 or later. Signed with a Developer ID, notarized by Apple, no telemetry.</p>
   <div class="cta">
-    <a class="btn primary" href="https://github.com/leaner-app/releases/releases/latest/download/Leaner.dmg">Descargar .dmg</a>
-    <a class="btn" href="https://github.com/leaner-app/path-policy">Auditar qué borra</a>
+    <a class="btn primary" href="https://github.com/leaner-app/releases/releases/latest/download/Leaner.dmg">Download .dmg</a>
+    <a class="btn" href="https://github.com/leaner-app/path-policy">Audit what it deletes</a>
   </div>
-  <img class="shot" src="img/resumen.png" alt="Resumen de Leaner: disco, espacio recuperable y actualizaciones">
+  <img class="shot" src="img/resumen.png" alt="Leaner’s overview: disk usage, recoverable space and updates">
 </header>
 
 <section>
-  <h2>Instalar</h2>
-  <p class="lead">Con Homebrew, que además se encarga de las actualizaciones:</p>
+  <h2>Install</h2>
+  <p class="lead">With Homebrew, which also handles updates:</p>
   <pre><code>brew install --cask leaner-app/tap/leaner</code></pre>
-  <p class="lead">O desde la terminal, sin Homebrew:</p>
+  <p class="lead">Or from the terminal, without Homebrew:</p>
   <pre><code>curl -fsSL https://raw.githubusercontent.com/leaner-app/releases/main/install.sh | zsh</code></pre>
 </section>
 
 <section>
-  <h2>Por qué existe</h2>
+  <h2>Why it exists</h2>
   <p class="lead">
-    Los limpiadores para Mac buscan cachés de navegador y archivos de idioma. En una máquina de
-    desarrollo eso es calderilla: lo que ocupa son los repositorios de dependencias, las
-    distribuciones descargadas, los índices de compilación y los simuladores. Este es el reparto
-    real en el equipo donde se desarrolla Leaner, la primera vez que se pasó:
+    Mac cleaners go after browser caches and language files. On a development machine that is
+    pocket change: the weight is in dependency repositories, downloaded distributions, build
+    indexes and simulators. This is the actual breakdown on the machine where Leaner is built,
+    the first time it was run:
   </p>
   <table>
-    <tr><td>Cachés de apps Chromium y Electron (Chrome, VS&nbsp;Code, Slack, Spotify…)</td><td class="num">11,5 GB</td></tr>
-    <tr><td>Repositorio local de Maven</td><td class="num">7,1 GB</td></tr>
-    <tr><td>Distribuciones de Gradle y JDKs</td><td class="num">5,2 GB</td></tr>
-    <tr><td>Cachés de herramientas de terminal (<code>~/.cache</code>)</td><td class="num">2,2 GB</td></tr>
-    <tr><td>Cachés de npm, yarn, pnpm, pip, Homebrew, Cargo, Go…</td><td class="num">1,2 GB</td></tr>
-    <tr><td>Registros del daemon de Gradle</td><td class="num">1,2 GB</td></tr>
-    <tr><td>Cachés del sistema, papelera, descargas, datos de apps desinstaladas…</td><td class="num">~1 GB</td></tr>
-    <tr class="total"><td>Total propuesto</td><td class="num">29 GB</td></tr>
+    <tr><td>Chromium and Electron app caches (Chrome, VS&nbsp;Code, Slack, Spotify…)</td><td class="num">11.5 GB</td></tr>
+    <tr><td>Local Maven repository</td><td class="num">7.1 GB</td></tr>
+    <tr><td>Gradle distributions and JDKs</td><td class="num">5.2 GB</td></tr>
+    <tr><td>Command-line tool caches (<code>~/.cache</code>)</td><td class="num">2.2 GB</td></tr>
+    <tr><td>npm, yarn, pnpm, pip, Homebrew, Cargo, Go caches…</td><td class="num">1.2 GB</td></tr>
+    <tr><td>Gradle daemon logs</td><td class="num">1.2 GB</td></tr>
+    <tr><td>System caches, Trash, downloads, data from uninstalled apps…</td><td class="num">~1 GB</td></tr>
+    <tr class="total"><td>Total proposed</td><td class="num">29 GB</td></tr>
   </table>
   <p class="lead" style="margin-top:16px">
-    Tras esa primera limpieza el mismo equipo sigue proponiendo unos 16 GB: las cachés se
-    regeneran y los repositorios de dependencias vuelven a crecer. Está pensada para volver a
-    pasarla, no para usarla una sola vez.
+    After that first cleanup the same machine still proposes around 16 GB: caches come back and
+    dependency repositories grow again. It is meant to be run periodically, not once.
   </p>
-  <img class="shot" src="img/limpieza.png" alt="Lista de categorías de limpieza con su tamaño y nivel de riesgo" style="margin-top:20px">
+  <img class="shot" src="img/limpieza.png" alt="List of cleanup categories with their size and risk level" style="margin-top:20px">
 </section>
 
 <section>
-  <h2>Qué limpia</h2>
+  <h2>What it cleans</h2>
   <p class="lead">
-    Lo <span class="tag safe">Seguro</span> viene preseleccionado; lo de
-    <span class="tag review">Revisar</span> solo se elimina si lo marcas tú.
+    Anything <span class="tag safe">Safe</span> is preselected;
+    <span class="tag review">Review</span> items are only removed if you check them yourself.
   </p>
   <table>
-    <tr><td>Cachés y registros de apps, Papelera, estado de ventanas</td><td class="num"><span class="tag safe">Seguro</span></td></tr>
-    <tr><td>Cachés de apps Chromium y Electron</td><td class="num"><span class="tag safe">Seguro</span></td></tr>
-    <tr><td>Cachés de gestores de paquetes y del daemon de Gradle</td><td class="num"><span class="tag safe">Seguro</span></td></tr>
-    <tr><td>DerivedData de Xcode y simuladores sin runtime</td><td class="num"><span class="tag safe">Seguro</span></td></tr>
-    <tr><td>Repositorio de Maven, distribuciones de Gradle y JDKs</td><td class="num"><span class="tag review">Revisar</span></td></tr>
-    <tr><td>Cachés de terminal, temporales antiguos, Playwright</td><td class="num"><span class="tag review">Revisar</span></td></tr>
-    <tr><td>DeviceSupport y Archives de Xcode</td><td class="num"><span class="tag review">Revisar</span></td></tr>
-    <tr><td>Apps instaladas en simuladores apagados</td><td class="num"><span class="tag review">Revisar</span></td></tr>
-    <tr><td>Descargas de Mail, instaladores y descargas antiguas</td><td class="num"><span class="tag review">Revisar</span></td></tr>
-    <tr><td>Copias de iPhone/iPad y datos de apps desinstaladas</td><td class="num"><span class="tag review">Revisar</span></td></tr>
+    <tr><td>App caches and logs, Trash, saved window state</td><td class="num"><span class="tag safe">Safe</span></td></tr>
+    <tr><td>Chromium and Electron app caches</td><td class="num"><span class="tag safe">Safe</span></td></tr>
+    <tr><td>Package manager caches and Gradle daemon logs</td><td class="num"><span class="tag safe">Safe</span></td></tr>
+    <tr><td>Xcode DerivedData and simulators with no runtime</td><td class="num"><span class="tag safe">Safe</span></td></tr>
+    <tr><td>Maven repository, Gradle distributions and JDKs</td><td class="num"><span class="tag review">Review</span></td></tr>
+    <tr><td>Terminal caches, old temporary files, Playwright</td><td class="num"><span class="tag review">Review</span></td></tr>
+    <tr><td>Xcode device support and archives</td><td class="num"><span class="tag review">Review</span></td></tr>
+    <tr><td>Apps installed in shut-down simulators</td><td class="num"><span class="tag review">Review</span></td></tr>
+    <tr><td>Mail downloads, installers and old downloads</td><td class="num"><span class="tag review">Review</span></td></tr>
+    <tr><td>iPhone and iPad backups, data from uninstalled apps</td><td class="num"><span class="tag review">Review</span></td></tr>
   </table>
   <p class="lead" style="margin-top:16px">
-    Además desinstala apps sin uso arrastrando sus datos, y localiza los archivos más grandes.
+    It also uninstalls unused apps along with their leftover data, and finds your largest files.
   </p>
 </section>
 
 <section>
-  <h2>Por qué puedes fiarte</h2>
+  <h2>Why you can trust it</h2>
   <p class="lead">
-    Una app que borra archivos y pide «Acceso total al disco» tiene que ganarse ese permiso.
+    An app that deletes files and asks for Full Disk Access has to earn that permission.
   </p>
   <ul class="checks">
-    <li><b>La política de borrado es pública.</b> Está en
-      <a href="https://github.com/leaner-app/path-policy">leaner-app/path-policy</a> con sus tests:
-      clónala y ejecuta <code>swift test</code>. Es el mismo archivo que compila la app, con su <code>sha256</code>.</li>
-    <li><b>Autoridad única.</b> Esa política decide al escanear y <em>otra vez justo antes de cada
-      eliminación</em>, así que un error en un escáner no puede acabar en un borrado indebido.</li>
-    <li><b>Ámbito acotado.</b> Solo tu carpeta de usuario, <code>$TMPDIR</code> y, al desinstalar, la
-      app que elijas. Nunca <code>/System</code>, <code>/Library</code>, <code>/usr</code> ni apps protegidas por SIP.</li>
-    <li><b>Zonas vetadas.</b> Mail, Mensajes, Fotos, llaveros, iCloud Drive, contenedores de Apple y
-      bibliotecas de Fotos o Música: ni se borran ni se recorren.</li>
-    <li><b>Reversible donde importa.</b> Lo marcado como «Revisar» y las desinstalaciones van a la Papelera.</li>
-    <li><b>Sin telemetría.</b> La app solo sale a la red para comprobar si hay una versión nueva.</li>
+    <li><b>The deletion policy is public.</b> It lives in
+      <a href="https://github.com/leaner-app/path-policy">leaner-app/path-policy</a> with its tests:
+      clone it and run <code>swift test</code>. It is the same file the app is built from, with its <code>sha256</code>.</li>
+    <li><b>Single authority.</b> That policy decides when scanning and <em>again right before every
+      deletion</em>, so a bug in a scanner cannot turn into a bad delete.</li>
+    <li><b>Bounded scope.</b> Only your home folder, <code>$TMPDIR</code> and, when uninstalling, the app
+      you pick. Never <code>/System</code>, <code>/Library</code>, <code>/usr</code> or SIP-protected apps.</li>
+    <li><b>Off-limits areas.</b> Mail, Messages, Photos, keychains, iCloud Drive, Apple containers and
+      Photos or Music libraries are neither deleted nor traversed.</li>
+    <li><b>Reversible where it matters.</b> Anything marked “Review”, and uninstalls, go to the Trash.</li>
+    <li><b>No telemetry.</b> The app only reaches the network to check for a new version.</li>
   </ul>
 </section>
 
 <footer>
   <p>
-    <a href="https://github.com/leaner-app/releases/releases">Todas las versiones</a> ·
-    <a href="https://github.com/leaner-app/releases/issues">Incidencias</a> ·
-    <a href="https://github.com/leaner-app/path-policy">Política de borrado</a>
+    <a href="https://github.com/leaner-app/releases/releases">All versions</a> ·
+    <a href="https://github.com/leaner-app/releases/issues">Issues</a> ·
+    <a href="https://github.com/leaner-app/path-policy">Deletion policy</a>
   </p>
+  <p class="langpick">English · <a href="es/">Español</a></p>
 </footer>
 
 </div>
+<script>
+// Suggest the Spanish page to Spanish-speaking visitors, but never redirect: a shared link
+// must always land where it points, and an automatic jump to another language is hostile.
+(function () {
+  var KEY = 'leaner-lang-dismissed';
+  try {
+    if (localStorage.getItem(KEY)) return;
+  } catch (e) { /* private browsing: just show nothing */ return; }
+  var speaksSpanish = (navigator.languages || [navigator.language || ''])
+    .some(function (l) { return l.toLowerCase().indexOf('es') === 0; });
+  if (!speaksSpanish) return;
+  var bar = document.getElementById('langbar');
+  bar.style.display = 'flex';
+  document.getElementById('langdismiss').addEventListener('click', function () {
+    bar.style.display = 'none';
+    try { localStorage.setItem(KEY, '1'); } catch (e) {}
+  });
+})();
+</script>
 </body>
 </html>
