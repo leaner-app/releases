@@ -12,7 +12,9 @@
 </p>
 
 <p align="center">
-  <img src="docs/img/resumen.png" alt="Leaner en macOS" width="820">
+  <img src="docs/img/resumen.png" alt="Resumen de Leaner: disco, espacio recuperable y actualizaciones" width="820">
+  <br><br>
+  <img src="docs/img/limpieza.png" alt="Lista de categorías de limpieza con su tamaño y nivel de riesgo" width="820">
 </p>
 
 ## Instalar
@@ -34,7 +36,7 @@ Los limpiadores de disco para Mac buscan cachés de navegador y archivos de idio
 máquina de desarrollo eso es calderilla: lo que ocupa son los repositorios de dependencias, las
 distribuciones descargadas, los índices de compilación y los simuladores.
 
-En el equipo donde se desarrolla Leaner, el reparto real es este:
+En el equipo donde se desarrolla Leaner, la primera medición dio esto:
 
 | | |
 |---|---|
@@ -46,6 +48,10 @@ En el equipo donde se desarrolla Leaner, el reparto real es este:
 | Registros del daemon de Gradle | 1,2 GB |
 | Resto (cachés del sistema, papelera, descargas, datos de apps desinstaladas…) | ~1 GB |
 | **Total propuesto** | **29 GB** |
+
+Tras esa primera limpieza, el mismo equipo sigue proponiendo unos 16 GB: las cachés se
+regeneran y los repositorios de dependencias vuelven a crecer. Por eso la app está pensada para
+volver a pasarla, no para usarla una vez.
 
 ## Qué limpia
 
