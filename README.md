@@ -8,7 +8,13 @@ Firmada con Developer ID y notarizada por Apple: se abre con doble clic, sin avi
 - [Última versión (.dmg)](https://github.com/leaner-app/releases/releases/latest/download/Leaner.dmg): abre el dmg y arrastra Leaner a Aplicaciones.
 - [Todas las versiones](https://github.com/leaner-app/releases/releases).
 
-Instalación desde la Terminal, que copia la app en `/Applications`:
+Con [Homebrew](https://brew.sh):
+
+```bash
+brew install --cask leaner-app/tap/leaner
+```
+
+O desde la Terminal sin Homebrew, copiando la app en `/Applications`:
 
 ```bash
 curl -fsSL https://raw.githubusercontent.com/leaner-app/releases/main/install.sh | zsh
