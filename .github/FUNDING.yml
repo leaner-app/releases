@@ -1,3 +1,4 @@
-# El botón «Sponsor» del repositorio. Aparece en cuanto el perfil de GitHub Sponsors
-# esté activo en github.com/sponsors/leinier; hasta entonces esta línea no hace nada.
+# El botón «Sponsor» del repositorio. GitHub Sponsors aparece en cuanto el perfil esté activo
+# en github.com/sponsors/leinier; el enlace de PayPal funciona desde ya.
 github: leinier
+custom: ["https://paypal.me/leinieraa"]

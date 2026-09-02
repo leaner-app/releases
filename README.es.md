@@ -105,8 +105,9 @@ desarrollador y que Gatekeeper la acepta. Si la instalaste con Homebrew, delega 
 ## Apoyar Leaner
 
 Leaner es gratuita y no tiene telemetría, anuncios ni cuentas. Si te ha ahorrado un buen pellizco
-de disco y quieres agradecerlo, puedes [patrocinarla en GitHub](https://github.com/sponsors/leinier).
-Es del todo opcional: no hay nada en la app detrás de un pago.
+de disco y quieres agradecerlo, puedes [patrocinarla en GitHub](https://github.com/sponsors/leinier)
+o [invitarme a un café por PayPal](https://paypal.me/leinieraa). Es del todo opcional: no hay
+nada en la app detrás de un pago.
 
 ---
 
