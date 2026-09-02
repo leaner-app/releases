@@ -1,8 +1,9 @@
 #!/bin/zsh
-# Instalador para usuarios finales: copia la app en /Applications y le quita la cuarentena
-# para que Gatekeeper no la bloquee (la app no está notarizada).
+# Instalador para usuarios finales: copia la app en /Applications y comprueba su firma.
+# Leaner está firmada con Developer ID y notarizada por Apple, así que Gatekeeper la acepta
+# sin tener que tocar la cuarentena.
 #
-#   Uso local:   Scripts/install.sh dist/Leaner-1.0.0.zip
+#   Uso local:   ./install.sh Leaner-1.1.0.zip
 #   Uso remoto:  curl -fsSL https://raw.githubusercontent.com/leaner-app/releases/main/install.sh | zsh
 #                (instala siempre la última release publicada)
 set -euo pipefail
@@ -37,10 +38,13 @@ mkdir -p "$DEST"
 rm -rf "$DEST/$APP"
 ditto "$FOUND" "$DEST/$APP"
 
-echo "▸ Quitando la cuarentena de Gatekeeper"
-xattr -dr com.apple.quarantine "$DEST/$APP" 2>/dev/null || true
-
-codesign --verify --deep --strict "$DEST/$APP" && echo "▸ Firma íntegra"
+echo "▸ Comprobando la firma"
+codesign --verify --deep --strict "$DEST/$APP" && echo "  firma íntegra"
+if spctl --assess --type execute "$DEST/$APP" >/dev/null 2>&1; then
+  echo "  notarizada por Apple: se abre con doble clic, sin avisos"
+else
+  echo "  aviso: Gatekeeper no la acepta; ábrela con clic derecho → Abrir"
+fi
 echo
 echo "Instalada. Ábrela con:  open \"$DEST/$APP\""
 echo "Para que lea la Papelera, Mail y las copias de iPhone, concede «Acceso total al disco» en"

@@ -14,6 +14,24 @@ Instalación desde la Terminal, que copia la app en `/Applications`:
 curl -fsSL https://raw.githubusercontent.com/leaner-app/releases/main/install.sh | zsh
 ```
 
+## Qué limpia
+
+| Categoría | Riesgo |
+|---|---|
+| Cachés y registros de apps, Papelera, estado de ventanas guardado | Seguro |
+| Cachés de apps Chromium y Electron: Chrome, VS Code, Slack, Discord, Spotify… | Seguro |
+| Cachés de npm, yarn, pnpm, bun, pip, Homebrew, Gradle, CocoaPods, Cargo, Go, Composer, NuGet | Seguro |
+| DerivedData de Xcode, cachés y simuladores sin runtime | Seguro |
+| Repositorio local de Maven, distribuciones de Gradle y JDKs | Revisar |
+| Cachés de herramientas de terminal (`~/.cache`) y temporales antiguos | Revisar |
+| DeviceSupport y Archives de Xcode, navegadores de Playwright | Revisar |
+| Apps instaladas en simuladores apagados (el dispositivo se conserva) | Revisar |
+| Descargas de Mail, instaladores y descargas antiguas | Revisar |
+| Copias de iPhone/iPad, datos de apps ya desinstaladas | Revisar |
+
+Lo «Seguro» viene preseleccionado; lo de «Revisar» solo se elimina si lo marcas tú. En un
+equipo de desarrollo es fácil que la suma pase de 25 GB.
+
 ## Permisos
 
 Para leer la Papelera, las descargas de Mail y las copias de iPhone, concede «Acceso total
