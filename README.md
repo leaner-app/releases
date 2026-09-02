@@ -100,6 +100,12 @@ The app tells you when a new version is out and installs it after checking that 
 the same developer and accepted by Gatekeeper. If you installed it with Homebrew, it defers to
 `brew upgrade` so brew's bookkeeping stays correct.
 
+## Support Leaner
+
+Leaner is free and has no telemetry, ads or accounts. If it saved you a chunk of disk and you
+want to say thanks, you can [sponsor it on GitHub](https://github.com/sponsors/leinier).
+Entirely optional: nothing in the app is gated behind it.
+
 ---
 
 The interface is available in English and Spanish, following your system language.

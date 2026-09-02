@@ -102,6 +102,12 @@ La app avisa cuando hay versión nueva y la instala tras comprobar que está fir
 desarrollador y que Gatekeeper la acepta. Si la instalaste con Homebrew, delega en
 `brew upgrade` para no descuadrar su contabilidad.
 
+## Apoyar Leaner
+
+Leaner es gratuita y no tiene telemetría, anuncios ni cuentas. Si te ha ahorrado un buen pellizco
+de disco y quieres agradecerlo, puedes [patrocinarla en GitHub](https://github.com/sponsors/leinier).
+Es del todo opcional: no hay nada en la app detrás de un pago.
+
 ---
 
 Incidencias y sugerencias en [Issues](https://github.com/leaner-app/releases/issues).
